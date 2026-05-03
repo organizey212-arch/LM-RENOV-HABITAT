@@ -73,16 +73,6 @@ export function LoginPage() {
         </span>
       </div>
       <h1 className="h1">Connexion</h1>
-      <div className="card card-notice" style={{ maxWidth: 520, marginBottom: 18 }}>
-        <p className="meta" style={{ marginTop: 0 }}>
-          Droits après connexion
-        </p>
-        <p className="lead" style={{ marginBottom: 0 }}>
-          Après connexion : <strong>utilisateur</strong> → tableau de bord&nbsp;; <strong>admin</strong> →{" "}
-          <strong>/dashboard/admin</strong>. En local avec <code>npm run dashboard:dev</code>, mêmes URL&nbsp;:{" "}
-          <strong>/dashboard/login</strong>, <strong>/dashboard/</strong>, <strong>/dashboard/admin</strong>.
-        </p>
-      </div>
       <div className="card" style={{ maxWidth: 400 }}>
         <form onSubmit={onSubmit}>
           <div className="field">
