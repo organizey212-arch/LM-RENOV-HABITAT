@@ -9,6 +9,14 @@ $root = Split-Path -Parent $PSScriptRoot
 & (Join-Path $PSScriptRoot "sync-symo.ps1")
 
 $symo = Join-Path $root "symo-site"
+$vercelMeta = Join-Path $symo ".vercel\project.json"
+if (-not (Test-Path -LiteralPath $vercelMeta)) {
+  Write-Host "Lien Vercel absent — liaison au projet symo-solutions (une seule fois)."
+  Push-Location $symo
+  cmd /c "npx --yes vercel link --yes --project symo-solutions 2>&1"
+  Pop-Location
+}
+
 Push-Location $symo
 
 # cmd.exe : évite que Windows PowerShell 5 traite stderr de la CLI Vercel comme une erreur fatale

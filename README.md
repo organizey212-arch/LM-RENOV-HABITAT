@@ -16,6 +16,14 @@ Deux projets Web vivent ici, dans des dossiers séparés :
 
 Ou depuis **`symo-solutions/`** : `npm run sync-symo`, etc.
 
+### Vercel (projet **symo-solutions**)
+
+**Réglage indispensable** si le dépôt Git est la racine du monorepo : dans Vercel → **Settings → General → Root Directory** = `symo-solutions/symo-site`. Sinon les déploiements automatiques ne prennent pas les bons fichiers.
+
+**CLI** (après `npm run symo:sync`) : `npm run symo:deploy` — déploie depuis `symo-solutions/symo-site`. La première fois, le script lance `vercel link` vers **symo-solutions** si besoin.
+
+La prod est exposée sur **https://www.symo.solutions** (alias du projet Vercel).
+
 ## LM Rénov'
 
 Ouvrir ou servir **`lm-renov-habitat/index.html`** (avec `LOGO/`, `Image/`, `style.css` au même niveau).
