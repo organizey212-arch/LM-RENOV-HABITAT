@@ -108,10 +108,6 @@ export function LoginPage() {
             {busy ? "Connexion…" : "Se connecter"}
           </button>
         </form>
-        <p className="meta" style={{ marginTop: 18, marginBottom: 0 }}>
-          Comptes créés dans Supabase Auth : activez ensuite un profil avec le SQL fourni (<code>role</code>
-          &nbsp;= user ou admin).
-        </p>
       </div>
     </div>
   );
