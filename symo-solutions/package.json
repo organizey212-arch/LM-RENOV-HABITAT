@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "sync-symo": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/sync-symo.ps1",
+    "deploy:symo": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/deploy-symo.ps1",
+    "dashboard:dev": "npm run dev --prefix dashboard",
+    "dashboard:build": "npm run build --prefix dashboard",
+    "dashboard:copy": "node scripts/copy-dashboard-dist.mjs"
+  },
+  "devDependencies": {
+    "pngjs": "^7.0.0"
+  }
+}

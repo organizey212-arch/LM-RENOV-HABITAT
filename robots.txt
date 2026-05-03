@@ -1,8 +1,0 @@
-# Autorise l'indexation par Google et les autres moteurs
-User-agent: *
-Allow: /
-
-# Ne pas indexer la page de remerciement formulaire (contenu peu utile dans les résultats)
-Disallow: /merci.html
-
-Sitemap: https://lm-renov-habitat.vercel.app/sitemap.xml

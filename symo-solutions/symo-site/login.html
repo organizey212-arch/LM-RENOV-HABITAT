@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Espace client — Connexion | Symo solutions</title>
+    <meta
+      name="description"
+      content="Connectez-vous à votre espace client Symo solutions avec votre e-mail et votre mot de passe."
+    />
+    <meta name="robots" content="noindex, follow" />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="landing-mini-agence.css" />
+    <!-- Généré par npm run sync-symo à partir de dashboard/.env.local (ne pas éditer à la main dans symo-site/) -->
+    <script src="login-supabase-env.js"></script>
+  </head>
+  <body>
+    <div class="body-glow" aria-hidden="true"></div>
+
+    <div class="wrap rdv-wrap">
+      <header class="site-nav" id="nav">
+        <a class="logo" href="index.html">symo <span>solutions</span></a>
+        <nav class="rdv-nav-mini" aria-label="Navigation">
+          <a class="rdv-back-site" href="index.html">← Retour au site</a>
+        </nav>
+      </header>
+
+      <main class="rdv-main" id="login-main">
+        <p class="section-kicker rdv-kicker">Espace client</p>
+        <h1 class="rdv-title">Connexion</h1>
+        <p class="rdv-intro">
+          Connexion sécurisée via Supabase. Les clés sont chargées depuis <code>dashboard/.env.local</code> lors du
+          <strong>sync</strong> (fichier <code>login-supabase-env.js</code> généré).
+        </p>
+        <p class="meta login-dash-link">
+          Tableau de bord React (admin + espace client)&nbsp;:
+          <a id="login-dash-spa-link" href="/login">Ouvrir la page de connexion</a>
+        </p>
+
+        <div class="rdv-panel">
+          <form id="login-form" novalidate>
+            <div class="field">
+              <label for="login-email">E-mail</label>
+              <input
+                id="login-email"
+                name="email"
+                type="email"
+                autocomplete="username"
+                inputmode="email"
+                placeholder="vous@exemple.fr"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="login-password">Mot de passe</label>
+              <input
+                id="login-password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                required
+              />
+            </div>
+            <p id="login-feedback" class="rdv-error" role="alert" hidden></p>
+            <div class="rdv-actions">
+              <button type="submit" class="btn btn-login-submit">Se connecter</button>
+            </div>
+          </form>
+
+          <div id="login-success" class="login-success-block" hidden>
+            <p class="rdv-intro" style="margin-top: 0">Vous êtes connecté.</p>
+            <p class="meta" style="margin-bottom: 16px">
+              Compte&nbsp;: <strong id="login-user-email"></strong>
+            </p>
+            <button type="button" class="btn btn-quiet" id="logout-btn">Déconnexion</button>
+          </div>
+        </div>
+
+        <p class="login-after-form login-foot-minimal">
+          <a href="rdv.html">Rendez-vous</a>
+          <span class="login-foot-sep" aria-hidden="true">·</span>
+          <a href="mailto:contact@symo.solutions">Écrire</a>
+        </p>
+      </main>
+    </div>
+
+    <script>
+      (function () {
+        var dashA = document.getElementById("login-dash-spa-link");
+        if (dashA) {
+          var path = "/dashboard/login";
+          var p = location.protocol;
+          var h = location.hostname;
+          var port = location.port;
+          var local =
+            h === "localhost" ||
+            h === "127.0.0.1" ||
+            h === "::1" ||
+            p === "file:";
+          if (local && port !== "5173" && port !== "4173") {
+            dashA.href = "http://localhost:5173" + path;
+            dashA.title =
+              "En local cette page vit souvent sur un autre port (ex. Live Server) : lien corrigé vers Vite — lance npm run dashboard:dev.";
+          }
+        }
+        var nav = document.getElementById("nav");
+        function setNavScroll() {
+          if (!nav) return;
+          nav.classList.toggle("is-scrolled", window.scrollY > 12);
+        }
+        window.addEventListener("scroll", setNavScroll, { passive: true });
+        setNavScroll();
+      })();
+    </script>
+    <script type="module" src="symo-login.js"></script>
+  </body>
+</html>

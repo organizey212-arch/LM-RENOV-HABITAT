@@ -1,2 +1,9 @@
 .vercel
 node_modules/
+**/node_modules/
+symo-solutions/dashboard/dist/
+.env.local
+**/.env.local
+.env*.local
+symo-solutions/symo-site/login-supabase-env.js
+symo-solutions/login-supabase-env.js

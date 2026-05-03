@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prendre rendez-vous — symo solutions</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="landing-mini-agence.css" />
+  </head>
+  <body>
+    <div class="body-glow" aria-hidden="true"></div>
+
+    <div class="wrap rdv-wrap">
+      <header class="site-nav" id="nav">
+        <a class="logo" href="index.html">symo <span>solutions</span></a>
+        <nav class="rdv-nav-mini" aria-label="Navigation">
+          <a class="rdv-back-site" href="index.html">← Retour au site</a>
+        </nav>
+      </header>
+
+      <main class="rdv-main" id="rdv-main">
+        <p class="section-kicker rdv-kicker">Rendez-vous</p>
+        <h1 class="rdv-title">Réserver un échange</h1>
+        <p class="rdv-intro">
+          Choisissez le format d’échange&nbsp;: le planning <strong>Calendly</strong> s’affiche ensuite
+          <strong>sur cette page</strong>. Nom, e-mail et téléphone sont demandés directement lors de la
+          réservation dans Calendly.
+        </p>
+
+        <div id="rdv-step-form" class="rdv-panel">
+          <form id="rdv-form" novalidate>
+            <fieldset class="rdv-type-fieldset">
+              <legend>Type de rendez-vous</legend>
+              <div class="rdv-type-options">
+                <label class="rdv-option">
+                  <input type="radio" name="meet_type" value="call" required checked />
+                  <span class="rdv-option-inner">
+                    <span class="rdv-option-title">Appel téléphonique</span>
+                    <span class="rdv-option-desc">Infos collectées lors de la réservation sur Calendly</span>
+                  </span>
+                </label>
+                <label class="rdv-option">
+                  <input type="radio" name="meet_type" value="visio" required />
+                  <span class="rdv-option-inner">
+                    <span class="rdv-option-title">Visioconférence</span>
+                    <span class="rdv-option-desc">Lien envoyé automatiquement (Meet, etc.)</span>
+                  </span>
+                </label>
+              </div>
+            </fieldset>
+
+            <p id="rdv-error" class="rdv-error" role="alert" hidden></p>
+            <div class="rdv-actions">
+              <button type="submit" class="btn btn-primary">Continuer</button>
+            </div>
+          </form>
+        </div>
+
+        <div id="rdv-step-booking" class="rdv-panel" hidden tabindex="-1">
+          <div class="rdv-recap" id="rdv-recap"></div>
+
+          <p class="rdv-book-intro" id="rdv-book-intro"></p>
+
+          <div
+            id="calendly-embed-host"
+            class="rdv-calendly-embed"
+            aria-label="Calendly — choix du créneau"
+            hidden
+          ></div>
+
+          <p class="rdv-cal-fallback" id="rdv-cal-fallback" hidden>
+            <a class="rdv-fallback-link" id="rdv-link-calendly" href="#" target="_blank" rel="noopener noreferrer"
+              >Le calendrier ne s’affiche pas — ouvrir Calendly dans un nouvel onglet<span aria-hidden="true"> ↗</span></a
+            >
+          </p>
+
+          <p class="rdv-book-hint" id="rdv-book-hint"></p>
+
+          <p class="rdv-privacy-note">
+            Le widget affiché ici est fourni par Calendly. Les données saisies le sont uniquement dans
+            leur interface (formulaire étape suivante sur calendly.com).
+          </p>
+
+          <button type="button" class="btn rdv-back" id="rdv-edit">Changer de type</button>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      (function () {
+        /*
+         * URLs Calendly + thème (text_color / primary_color) comme dans l’embed fourni par calendly.com.
+         */
+        var CALENDLY_THEME = "text_color=a5865d&primary_color=aa9b63";
+        var CONFIG = {
+          calendlyCall:
+            "https://calendly.com/symo_solutions/appel-telephonique?" + CALENDLY_THEME,
+          calendlyVisio:
+            "https://calendly.com/symo_solutions/visioconference?" + CALENDLY_THEME,
+        };
+
+        var form = document.getElementById("rdv-form");
+        var stepForm = document.getElementById("rdv-step-form");
+        var stepBooking = document.getElementById("rdv-step-booking");
+        var errEl = document.getElementById("rdv-error");
+        var recap = document.getElementById("rdv-recap");
+        var introBook = document.getElementById("rdv-book-intro");
+        var hintBook = document.getElementById("rdv-book-hint");
+        var embedHost = document.getElementById("calendly-embed-host");
+        var fallbackWrap = document.getElementById("rdv-cal-fallback");
+        var linkCal = document.getElementById("rdv-link-calendly");
+        var btnEdit = document.getElementById("rdv-edit");
+        var nav = document.getElementById("nav");
+        var mainEl = document.getElementById("rdv-main");
+
+        function isPlaceholderUrl(url) {
+          if (!url || typeof url !== "string") return true;
+          if (url === "#") return true;
+          if (!/^https?:\/\//i.test(url.trim())) return true;
+          if (/VOTRE-PROFIL|VOTRE-TYPE|example\.com/i.test(url)) return true;
+          return false;
+        }
+
+        function setNavScroll() {
+          if (!nav) return;
+          nav.classList.toggle("is-scrolled", window.scrollY > 12);
+        }
+        window.addEventListener("scroll", setNavScroll, { passive: true });
+        setNavScroll();
+
+        function showError(msg) {
+          errEl.textContent = msg || "";
+          errEl.hidden = !msg;
+        }
+
+        /** Conserve les paramètres (couleurs Calendly, etc.), supprime seulement le hash. */
+        function calendlyWidgetUrl(urlStr) {
+          try {
+            var url = new URL(urlStr.trim());
+            url.hash = "";
+            url.pathname = url.pathname.replace(/\/+$/, "") || "/";
+            return url.toString();
+          } catch (e) {
+            return urlStr.trim();
+          }
+        }
+
+        function prefersReducedMotion() {
+          return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        }
+
+        function loadCalendlyScript(done) {
+          if (window.Calendly) {
+            done();
+            return;
+          }
+          var s = document.createElement("script");
+          s.src = "https://assets.calendly.com/assets/external/widget.js";
+          s.async = true;
+          s.onload = function () {
+            done();
+          };
+          document.head.appendChild(s);
+        }
+
+        function clearCalendlyEmbed() {
+          if (!embedHost) return;
+          embedHost.innerHTML = "";
+          embedHost.hidden = true;
+          if (fallbackWrap) fallbackWrap.hidden = true;
+        }
+
+        function mountCalendlyEmbed(scheduleUrl) {
+          if (!embedHost) return;
+          embedHost.innerHTML = "";
+          embedHost.hidden = false;
+          if (fallbackWrap) fallbackWrap.hidden = false;
+
+          loadCalendlyScript(function () {
+            if (!window.Calendly || !window.Calendly.initInlineWidget) return;
+            Calendly.initInlineWidget({
+              url: calendlyWidgetUrl(scheduleUrl),
+              parentElement: embedHost,
+            });
+            window.requestAnimationFrame(function () {
+              window.setTimeout(function () {
+                embedHost.scrollIntoView({
+                  behavior: prefersReducedMotion() ? "auto" : "smooth",
+                  block: "start",
+                });
+              }, 120);
+            });
+          });
+        }
+
+        function showStep(which) {
+          if (which === "form") {
+            clearCalendlyEmbed();
+            stepForm.hidden = false;
+            stepBooking.hidden = true;
+            if (mainEl) mainEl.classList.remove("rdv-main--wide");
+          } else {
+            stepForm.hidden = true;
+            stepBooking.hidden = false;
+            if (mainEl) mainEl.classList.add("rdv-main--wide");
+          }
+        }
+
+        function configureBooking(meetType) {
+          var calRaw = meetType === "call" ? CONFIG.calendlyCall : CONFIG.calendlyVisio;
+          var calOk = !isPlaceholderUrl(calRaw);
+
+          if (!calOk) {
+            clearCalendlyEmbed();
+            if (linkCal) linkCal.href = "#";
+            introBook.textContent =
+              "Aucun événement Calendly configuré pour ce type de rendez-vous.";
+            hintBook.innerHTML =
+              'Dans rdv.html, remplacez <code style="opacity:0.85">CONFIG.calendlyCall</code> ou <code style="opacity:0.85">CONFIG.calendlyVisio</code> par l’URL de réservation publique depuis calendly.com, puis rechargez.';
+            return false;
+          }
+
+          introBook.textContent = "Choisissez un créneau dans le calendrier ci-dessous.";
+          hintBook.textContent =
+            meetType === "visio"
+              ? "Meet / visio selon votre configuration Calendly."
+              : "Calendly recueille les coordonnées nécessaires à l’appel au moment où la personne réserve.";
+
+          if (linkCal) linkCal.href = calendlyWidgetUrl(calRaw);
+          mountCalendlyEmbed(calRaw);
+          return true;
+        }
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          showError("");
+
+          if (!form.reportValidity()) {
+            showError("Vérifiez les champs obligatoires.");
+            return;
+          }
+
+          var meetEl = document.querySelector('input[name="meet_type"]:checked');
+          var meetType = meetEl ? meetEl.value : "call";
+
+          recap.innerHTML =
+            '<p class="rdv-recap-line">' +
+            "<strong>Type choisi —</strong> " +
+            (meetType === "call"
+              ? "Appel téléphonique"
+              : "Visioconférence") +
+            "</p>";
+
+          showStep("booking");
+          window.requestAnimationFrame(function () {
+            configureBooking(meetType);
+          });
+
+          sessionStorage.setItem(
+            "rdv-draft",
+            JSON.stringify({ meetType: meetType })
+          );
+          stepBooking.focus();
+        });
+
+        btnEdit.addEventListener("click", function () {
+          showStep("form");
+          showError("");
+          var radio = document.querySelector('input[name="meet_type"]');
+          if (radio) radio.focus();
+        });
+
+        if (linkCal) {
+          linkCal.addEventListener("click", function (e) {
+            var h = linkCal.getAttribute("href");
+            if (!h || h === "#") e.preventDefault();
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

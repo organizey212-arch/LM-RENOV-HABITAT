@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estimation gratuite | LM Rénov' Habitat Gironde</title>
+    <meta
+      name="description"
+      content="Estimez votre projet toiture, façade ou terrasse. Quelques questions puis validation de votre téléphone pour recevoir votre estimation."
+    />
+    <meta
+      name="robots"
+      content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+    />
+    <link rel="canonical" href="https://lm-renov-habitat.vercel.app/estimation.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:url" content="https://lm-renov-habitat.vercel.app/estimation.html" />
+    <meta property="og:title" content="Estimation en ligne | LM Rénov' Habitat" />
+    <meta
+      property="og:description"
+      content="Parcours simple : choisissez votre besoin, quelques précisions, puis votre numéro pour recevoir l'estimation."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <div class="brand">
+          <div class="brand-mark">
+            <img src="LOGO/logo.png" alt="Logo Renov Habitat" />
+          </div>
+        </div>
+
+        <nav class="menu">
+          <a href="index.html">ACCUEIL</a>
+          <a href="services.html">NOS SERVICES</a>
+          <a href="realisations.html">RÉALISATIONS</a>
+          <a href="catalogue-chantiers.html">CATALOGUE</a>
+          <a href="apropos.html">À PROPOS</a>
+          <a class="active" href="estimation.html">ESTIMATION</a>
+          <a href="contact.html">CONTACT</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="phone" href="tel:+33623456789"><i data-lucide="phone"></i>06 23 45 67 89</a>
+          <a class="quote-btn" href="contact.html">DEVIS GRATUIT</a>
+        </div>
+
+        <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="mobile-backdrop" aria-hidden="true"></div>
+    <aside class="mobile-drawer" aria-label="Menu mobile">
+      <a href="index.html">Accueil</a>
+      <a href="services.html">Nos services</a>
+      <a href="realisations.html">Réalisations</a>
+      <a href="catalogue-chantiers.html">Catalogue chantiers</a>
+      <a href="apropos.html">À propos</a>
+      <a class="active" href="estimation.html">Estimation</a>
+      <a href="contact.html">Contact</a>
+      <div class="mobile-drawer-cta">
+        <a class="quote-btn" href="contact.html">DEVIS GRATUIT</a>
+        <a class="phone" href="tel:+33623456789"><i data-lucide="phone"></i>06 23 45 67 89</a>
+      </div>
+    </aside>
+
+    <main class="estimation-page site-main">
+      <section class="estimation-section">
+        <div class="container estimation-inner">
+          <header class="estimation-intro">
+            <p class="estimation-eyebrow">Estimation</p>
+            <h1 class="estimation-title">En trois étapes, <span class="accent">sans engagement</span></h1>
+            <p class="estimation-lead">
+              Choix du type de travaux, quelques précisions utiles, puis validation de votre mobile — réponse sous 24 h.
+            </p>
+          </header>
+
+          <form
+            id="estimation-form"
+            class="estimation-form-card contact-form"
+            action="https://formsubmit.co/blacklauryn@sharebot.net"
+            method="POST"
+          >
+            <input type="hidden" name="_subject" value="Nouvelle demande d'estimation - LM Rénov' Habitat" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_next" value="https://lm-renov-habitat.vercel.app/merci.html" />
+            <input type="text" name="_honey" class="honeypot" tabindex="-1" autocomplete="off" />
+
+            <nav class="estimation-stepper" aria-label="Progression du formulaire">
+              <div class="estimation-stepper-track">
+                <div class="estimation-stepper-node is-active" data-est-step="0">
+                  <span class="estimation-stepper-circle" aria-hidden="true">1</span>
+                  <span class="estimation-stepper-name">Travaux</span>
+                </div>
+                <span class="estimation-stepper-line" aria-hidden="true"></span>
+                <div class="estimation-stepper-node" data-est-step="1">
+                  <span class="estimation-stepper-circle" aria-hidden="true">2</span>
+                  <span class="estimation-stepper-name">Détails</span>
+                </div>
+                <span class="estimation-stepper-line" aria-hidden="true"></span>
+                <div class="estimation-stepper-node" data-est-step="2">
+                  <span class="estimation-stepper-circle" aria-hidden="true">3</span>
+                  <span class="estimation-stepper-name">Mobile</span>
+                </div>
+              </div>
+            </nav>
+
+            <!-- Étape 1 -->
+            <div class="estimation-step is-visible" data-step="1" role="tabpanel">
+              <span class="estimation-step-kicker">Étape 1 · Type de projet</span>
+              <h2 class="estimation-step-title">Que souhaitez-vous estimer&nbsp;?</h2>
+              <fieldset class="estimation-fieldset">
+                <legend class="visually-hidden">Type de travaux</legend>
+                <div class="estimation-choices">
+                  <label class="estimation-choice">
+                    <input type="radio" name="Type_de_travaux" value="Toiture" />
+                    <span class="estimation-choice-label">Toiture</span>
+                  </label>
+                  <label class="estimation-choice">
+                    <input type="radio" name="Type_de_travaux" value="Façade" />
+                    <span class="estimation-choice-label">Façade</span>
+                  </label>
+                  <label class="estimation-choice">
+                    <input type="radio" name="Type_de_travaux" value="Terrasse" />
+                    <span class="estimation-choice-label">Terrasse</span>
+                  </label>
+                  <label class="estimation-choice">
+                    <input type="radio" name="Type_de_travaux" value="Plusieurs travaux" />
+                    <span class="estimation-choice-label">Plusieurs travaux</span>
+                  </label>
+                  <label class="estimation-choice">
+                    <input type="radio" name="Type_de_travaux" value="Autre" id="type-autre" />
+                    <span class="estimation-choice-label">Autre</span>
+                  </label>
+                </div>
+              </fieldset>
+              <div class="estimation-autre-wrap" id="autre-wrap" hidden>
+                <label class="text-label-full">
+                  Précisez votre besoin
+                  <input
+                    type="text"
+                    name="Type_autre_detail"
+                    id="type-autre-detail"
+                    maxlength="200"
+                    placeholder="Ex. gouttières, isolation combles..."
+                    autocomplete="off"
+                  />
+                </label>
+              </div>
+              <p class="estimation-form-error" id="err-step1" hidden>Veuillez choisir un type de travaux.</p>
+              <div class="estimation-actions">
+                <button type="button" class="primary-btn estimation-btn-submit js-est-next">Continuer</button>
+              </div>
+            </div>
+
+            <!-- Étape 2 -->
+            <div class="estimation-step" data-step="2" role="tabpanel" hidden>
+              <span class="estimation-step-kicker">Étape 2 · Contexte</span>
+              <h2 class="estimation-step-title">Précisions sur votre projet</h2>
+              <p class="estimation-help">Ce n'est pas obligatoire, mais cela nous aide à affiner votre estimation.</p>
+              <label class="text-label-full">
+                Ville ou code postal <span class="optional">(optionnel)</span>
+                <input
+                  type="text"
+                  name="Ville_ou_code_postal"
+                  maxlength="80"
+                  placeholder="Ex. 33000 Bordeaux"
+                  autocomplete="address-level2"
+                />
+              </label>
+              <label class="text-label-full">
+                Décrivez votre projet <span class="optional">(optionnel)</span>
+                <textarea
+                  name="Details_projet"
+                  rows="5"
+                  maxlength="1200"
+                  placeholder="Âge du bien, superficie approximative, travaux envisagés…"
+                ></textarea>
+              </label>
+              <div class="estimation-actions estimation-actions-split">
+                <button type="button" class="secondary-btn estimation-btn-secondary js-est-prev">Retour</button>
+                <button type="button" class="primary-btn estimation-btn-submit js-est-next">Continuer</button>
+              </div>
+            </div>
+
+            <!-- Étape 3 -->
+            <div class="estimation-step" data-step="3" role="tabpanel" hidden>
+              <span class="estimation-step-kicker">Étape 3 · Votre mobile</span>
+              <h2 class="estimation-step-title">Numéro pour recevoir l'estimation</h2>
+              <p class="estimation-help">
+                Saisissez deux fois le même <strong>numéro mobile (06 ou 07)</strong>. Nous vous rappelons sur ce numéro pour vous transmettre votre estimation.
+              </p>
+              <div class="estimation-fields-stack">
+                <label class="text-label-full" for="est-tel">
+                  Téléphone mobile
+                  <input
+                    type="tel"
+                    name="Telephone_mobile"
+                    id="est-tel"
+                    inputmode="tel"
+                    autocomplete="tel-national"
+                    required
+                    placeholder="06 12 34 56 78"
+                  />
+                </label>
+                <label class="text-label-full" for="est-tel-confirm">
+                  Confirmez le numéro
+                  <input
+                    type="tel"
+                    id="est-tel-confirm"
+                    inputmode="tel"
+                    autocomplete="tel-national"
+                    required
+                    placeholder="Même numéro à l'identique"
+                  />
+                </label>
+              </div>
+              <div class="estimation-consent-card">
+                <input type="checkbox" name="Consentement_contact" id="est-consent" value="oui" required />
+                <label class="estimation-consent-label" for="est-consent">
+                  J&apos;accepte d&apos;être rappelé sur ce numéro pour recevoir mon estimation gratuite et des informations sur mon projet.
+                </label>
+              </div>
+              <p class="estimation-form-error" id="err-step3" hidden></p>
+              <div class="estimation-actions estimation-actions-split">
+                <button type="button" class="secondary-btn estimation-btn-secondary js-est-prev">Retour</button>
+                <button type="submit" class="primary-btn form-submit estimation-btn-submit">
+                  Recevoir mon estimation
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <p class="estimation-footnote">
+            Une question précise ou un chantier urgent ? Contactez aussi notre équipe depuis la page
+            <a href="contact.html">contact</a>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <div class="brand-mark footer-logo">
+            <img src="LOGO/logo.png" alt="Logo Renov Habitat" />
+          </div>
+          <p>Expert en rénovation extérieure en Gironde.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="services.html">Nos services</a></li>
+            <li><a href="realisations.html">Réalisations</a></li>
+            <li><a href="catalogue-chantiers.html">Catalogue chantiers</a></li>
+            <li><a href="apropos.html">À propos</a></li>
+            <li><a href="estimation.html">Estimation</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul class="footer-contact-list">
+            <li><i data-lucide="phone"></i><a href="tel:+33623456789">06 23 45 67 89</a></li>
+            <li><i data-lucide="mail"></i><a href="mailto:contact@lm-renov-habitat.fr">contact@lm-renov-habitat.fr</a></li>
+            <li><i data-lucide="map-pin"></i>Gironde et alentours</li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>© 2026 LM Rénov' Habitat - Tous droits réservés.</p>
+        <p class="footer-credit">
+          Site web développé par
+          <a href="https://symo.solutions" rel="noopener noreferrer" target="_blank">Symo.solutions</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="menu.js"></script>
+    <script>
+      (function () {
+        function normalizeFrenchMobile(input) {
+          var s = (input || "").replace(/[\s.\-]/g, "");
+          if (s.startsWith("+33")) s = "0" + s.slice(3);
+          else if (s.startsWith("0033")) s = "0" + s.slice(4);
+          else if (s.startsWith("33") && s.length === 11) s = "0" + s.slice(2);
+          return s;
+        }
+
+        function isValidFrenchMobile(digits) {
+          return /^0[67]\d{8}$/.test(digits);
+        }
+
+        function formatTelDisplay(digits) {
+          if (!/^0\d{9}$/.test(digits)) return digits;
+          return (
+            digits.slice(0, 2) + " " + digits.slice(2, 4) + " " + digits.slice(4, 6) + " " + digits.slice(6, 8) + " " + digits.slice(8, 10)
+          );
+        }
+
+        var form = document.getElementById("estimation-form");
+        if (!form) return;
+
+        var steps = [].slice.call(form.querySelectorAll(".estimation-step"));
+        var progressNodes = form.querySelectorAll(".estimation-stepper-node");
+        var stepIndex = 0;
+
+        var autreRadio = document.getElementById("type-autre");
+        var autreWrap = document.getElementById("autre-wrap");
+        var autreDetail = document.getElementById("type-autre-detail");
+        var err1 = document.getElementById("err-step1");
+        var err3 = document.getElementById("err-step3");
+
+        function setStep(next) {
+          stepIndex = next;
+          steps.forEach(function (el, i) {
+            var on = i === stepIndex;
+            el.hidden = !on;
+            el.classList.toggle("is-visible", on);
+          });
+          [].forEach.call(progressNodes, function (node, i) {
+            node.classList.toggle("is-active", i === stepIndex);
+            node.classList.toggle("is-done", i < stepIndex);
+          });
+        }
+
+        form.querySelectorAll('input[name="Type_de_travaux"]').forEach(function (radio) {
+          radio.addEventListener("change", function () {
+            if (autreRadio && autreRadio.checked) {
+              autreWrap.hidden = false;
+              autreDetail.required = true;
+            } else {
+              autreWrap.hidden = true;
+              autreDetail.required = false;
+              autreDetail.value = "";
+            }
+            err1.hidden = true;
+          });
+        });
+
+        form.querySelectorAll(".js-est-next").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            err1.hidden = true;
+            if (stepIndex === 0) {
+              var checked = form.querySelector('input[name="Type_de_travaux"]:checked');
+              if (!checked) {
+                err1.hidden = false;
+                return;
+              }
+              if (autreRadio.checked && !(autreDetail.value || "").trim()) {
+                err1.textContent = "Veuillez préciser votre besoin lorsque vous choisissez « Autre ».";
+                err1.hidden = false;
+                return;
+              }
+              setStep(1);
+              return;
+            }
+            if (stepIndex === 1) setStep(2);
+          });
+        });
+
+        form.querySelectorAll(".js-est-prev").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            err3.hidden = true;
+            if (stepIndex === 1) setStep(0);
+            else if (stepIndex === 2) setStep(1);
+          });
+        });
+
+        form.addEventListener("submit", function (e) {
+          err3.hidden = true;
+          var telInput = document.getElementById("est-tel");
+          var telConfirm = document.getElementById("est-tel-confirm");
+          var a = normalizeFrenchMobile(telInput.value);
+          var b = normalizeFrenchMobile(telConfirm.value);
+
+          if (!isValidFrenchMobile(a)) {
+            e.preventDefault();
+            err3.textContent = "Indiquez un numéro mobile français à 10 chiffres commençant par 06 ou 07.";
+            err3.hidden = false;
+            return;
+          }
+          if (a !== b) {
+            e.preventDefault();
+            err3.textContent = "Les deux numéros ne correspondent pas. Corrigez et réessayez.";
+            err3.hidden = false;
+            return;
+          }
+          telInput.value = formatTelDisplay(a);
+          telConfirm.value = formatTelDisplay(b);
+        });
+      })();
+    </script>
+  </body>
+</html>

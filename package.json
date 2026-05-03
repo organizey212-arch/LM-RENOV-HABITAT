@@ -1,5 +1,11 @@
 {
-  "devDependencies": {
-    "pngjs": "^7.0.0"
+  "name": "lm-renov-and-symo-workspace",
+  "private": true,
+  "description": "Deux sites dans le même dépôt : LM Rénov' Habitat (artisan) et Symo solutions (agence + dashboard).",
+  "scripts": {
+    "symo:sync": "npm run sync-symo --prefix symo-solutions",
+    "symo:deploy": "npm run deploy:symo --prefix symo-solutions",
+    "symo:dashboard:dev": "npm run dashboard:dev --prefix symo-solutions",
+    "symo:dashboard:build": "npm run dashboard:build --prefix symo-solutions"
   }
 }
