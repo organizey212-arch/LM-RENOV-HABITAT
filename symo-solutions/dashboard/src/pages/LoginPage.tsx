@@ -73,7 +73,6 @@ export function LoginPage() {
         </span>
       </div>
       <h1 className="h1">Connexion</h1>
-      <p className="lead">Accédez à votre espace client ou à l’administration.</p>
       <div className="card card-notice" style={{ maxWidth: 520, marginBottom: 18 }}>
         <p className="meta" style={{ marginTop: 0 }}>
           Droits après connexion
